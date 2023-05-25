@@ -9,8 +9,7 @@ def view_friendships():
     if 'user_id' not in session:
         return redirect ('/')
     friends = Friendship.get_all_friends({'id': session['user_id']})
-    not_friends = User.get_unfriended_user_by_name({'id': session['user_id']})
-    return render_template ('dashboard.html', friends = friends, not_friends = not_friends)
+    return render_template ('dashboard.html', friends = friends)
 
 #view friends profile
 @app.route('/friendships/view/<int:id>')
@@ -21,9 +20,11 @@ def view_friend_page(id):
     this_friend = Friendship.get_one_friend({'id': id })
     return render_template ('friend_view.html', this_friend = this_friend, logged_user=logged_user)
 
-@app.route('/anime/search')
-def search():
+#view a user profile
+@app.route('/users/view/<int:id>')
+def view_userProfile (id):
     if 'user_id' not in session:
         return redirect ('/')
     logged_user = User.get_by_id({'id': session['user_id']})
-    return render_template('create.html', logged_user=logged_user)
+    other_user= User.get_unfriended_user_by_name({'id': id })
+    return render_template ('friend_view.html', other_user=other_user, logged_user=logged_user)

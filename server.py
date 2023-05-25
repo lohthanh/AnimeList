@@ -1,4 +1,4 @@
-from flask_app.controllers import users_controller, friendships_controller
+from flask_app.controllers import users_controller, friendships_controller, animes_controller
 from flask_app import app
 
             

@@ -48,12 +48,20 @@ class User:
     
     @classmethod
     def get_unfriended_user_by_name (cls, data ):
-        query = """SELECT * FROM users u LEFT JOIN friendships f on u.id = f.user_id WHERE f.user_id != %(id)s;
+        query = """SELECT * FROM users LEFT JOIN friendships ON user_id = friendships.friend_id
+            WHERE user_id not in 
+            (SELECT friend_id FROM users LEFT JOIN friendships ON friend_id = users.id 
+            WHERE user_id = %(id)s) and users.id != %(id)s;
                 """
         results = connectToMySQL(DATABASE).query_db(query, data)
-        if results:
-            return cls (results[0])
-        return False
+        return results
+
+    @classmethod
+    def get_other_users (cls, data):
+        query = """
+            SELECT username FROM users WHERE id != %(id)s;
+        """
+        return connectToMySQL(DATABASE).query_db(query, data)
 
     @classmethod
     def get_by_email(cls, data):

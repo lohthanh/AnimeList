@@ -12,13 +12,16 @@ async function animeSearch(event) {
     let response = await fetch(URL + nameInput.value)
     let data = await response.json()
     console.log(data)
+    let epCount = data.data[0].attributes.episodeCount != null ? data.data[0].attributes.episodeCount : "Ongoing"
     resultDiv.innerHTML = `
                 <div class="animeResults">
                 <img src="${data.data[0].attributes.coverImage.tiny}" alt="${data.data[0].attributes.canonicalTitle}">
                 <h4 class="mt-3">Anime Title: ${data.data[0].attributes.canonicalTitle}</h4>
-                <p>Episodes: ${data.data[0].attributes.episodeCount}</p>
+                <p>Episodes: ${epCount}</p>
                 <p>Status: ${data.data[0].attributes.status}</p>
                 <p>Synopsis: ${data.data[0].attributes.description}</p>
+                ${data.data[0].id}
+                ${data.data[0].links.self}
                 </div>
     `
 }  
@@ -53,10 +56,11 @@ fetch(recommendationsURL)
 .then( (response) => response.json())
 .then( (data) => {
     data.data.forEach( (item) => {
+        let epCount = item.attributes.episodeCount != null ? item.attributes.episodeCount : "Ongoing"
         table.innerHTML += `
                 <tr>
                     <td>${item.attributes.canonicalTitle}</td>
-                    <td>${item.attributes.episodeCount}</td>
+                    <td>${epCount}</td>
                     <td>${item.attributes.status}</td>
                 </tr>
         `;

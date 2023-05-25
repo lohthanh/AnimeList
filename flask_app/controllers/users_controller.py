@@ -44,9 +44,12 @@ def loging_user():
 def dashboard():
     if 'user_id' not in session:
         return redirect('/')
-    logged_user = User.get_by_id({'id': session['user_id']})
-    friends = Friendship.get_all_friends({'id': session['user_id']})
-    return render_template('dashboard.html', logged_user = logged_user, friends = friends)
+    context = {
+        'logged_user' : User.get_by_id({'id': session['user_id']}),
+        'friends' : Friendship.get_all_friends({'id': session['user_id']}),
+        'not_friends' : User.get_unfriended_user_by_name({'id': session['user_id']})
+    }
+    return render_template('dashboard.html', **context)
 
 @app.route('/users/logout')
 def logout():
