@@ -46,7 +46,7 @@ async function fetchPic() {
     `
 }
 
-// fetchPic()
+fetchPic()
 
 const recommendationsURL = 'https://kitsu.io/api/edge/anime?page%5Blimit%5D=10&sort=-favoritesCount,-popularityRank'
 const recommendationDiv = document.querySelector('#recom_div')
@@ -79,4 +79,4 @@ async function fetchQuotes() {
     `
 }
 
-// fetchQuotes()
+fetchQuotes()

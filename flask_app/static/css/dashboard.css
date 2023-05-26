@@ -19,7 +19,7 @@
 
 .div-bg {
     background-color: rgb(214, 214, 214);
-    opacity: 0.6;
+    opacity: 0.8;
     color: black;
     font-weight: bold;
 }
@@ -46,4 +46,8 @@
 
 .margin-left {
     margin-left: 40rem;
+}
+
+.ftitle {
+    margin-left: 35rem;
 }

@@ -9,11 +9,3 @@ def search():
         return redirect ('/')
     logged_user = User.get_by_id({'id': session['user_id']})
     return render_template('create.html', logged_user=logged_user)
-
-@app.route('/animes/add', methods=['POST'])
-def add():
-    if 'user_id' not in session:
-        return redirect ('/')
-    watched_anime = Anime.create({request.form})
-    return redirect ('/dashboard', watched_anime=watched_anime)
-    

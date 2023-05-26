@@ -17,11 +17,11 @@
     {% block navbar %}
     <nav class="d-flex justify-content-between pt-3 pb-4 nav_bg-color">
         <h3 class="ms-3">Welcome {{logged_user.username}}</h3>
-        <!-- <audio controls autoplay loop>
+        <audio controls autoplay loop>
             <source src=" {{ url_for('static', filename='/audio/fairy tail Ending 11 full ( Glitter ) Lyrics.mp3')}} "
                 type="audio/ogg">
             Your browser does not support the audio element.
-        </audio> -->
+        </audio>
         <ul class="list-group list-group-horizontal">
             <li class="list-group me-3" id="dashboard-link"><a href="/dashboard">My Dashboard</a></li>
             <li class="list-group me-3" id="anime-link"><a href="/anime/search">Anime LookUp</a></li>
@@ -29,13 +29,13 @@
         </ul>
     </nav>
     {% endblock navbar %}
-
-    {% block main_content %}
-    <!-- <video width="100%" height="100%" autoplay muted loop>
+    <video width="100%" height="100%" autoplay muted loop>
         <source src="{{ url_for('static', filename='/img/anime-boy-underwater-sunflower-HD-live-wallpaper.mp4') }}"
             type="video/mp4">
         Your browser does not support the video tag.
-    </video> -->
+    </video>
+    {% block main_content %}
+    
     <div class="mt2 overlay ms-3 container-width">
         <div class="d-flex justify-content-between ">
 

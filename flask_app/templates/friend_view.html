@@ -4,13 +4,10 @@
 {% endblock title %}
 {% block head %}
     {{super()}}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/css/friend.css') }}">
 {% endblock head %}
 
 {% block main_content %}
-{{super()}}
-<div>
-    <h1>Friends View</h1>
-</div>
-
+    {{super()}}
 {% endblock main_content %}
 
